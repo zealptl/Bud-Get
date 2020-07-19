@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://zealptl:zealptl@budget-tracker.mce7r.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "jwtSecret": "secret"
+}

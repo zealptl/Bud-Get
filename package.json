@@ -4,7 +4,7 @@
   "description": "Full stack app to help manage your budget",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server.js"
+    "server": "nodemon ./src/server.js"
   },
   "repository": {
     "type": "git",

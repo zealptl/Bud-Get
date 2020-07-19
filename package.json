@@ -1,0 +1,31 @@
+{
+  "name": "bud-get",
+  "version": "1.0.0",
+  "description": "Full stack app to help manage your budget",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zealptl/Bud-Get.git"
+  },
+  "author": "Zeal Patel & Krushang Shah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zealptl/Bud-Get/issues"
+  },
+  "homepage": "https://github.com/zealptl/Bud-Get#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.0",
+    "koa-router": "^9.1.0",
+    "mongoose": "^5.9.25"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
+  }
+}

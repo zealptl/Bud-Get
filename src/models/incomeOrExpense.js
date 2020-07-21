@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const IncomeAndExpense = mongoose.Schema({
+const IncomeOrExpense = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'UserModel',
@@ -19,4 +19,4 @@ const IncomeAndExpense = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('IncomeModel', IncomeAndExpense);
+module.exports = mongoose.model('IncomeOrExpenseModel', IncomeOrExpense);

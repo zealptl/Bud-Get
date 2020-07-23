@@ -5,7 +5,7 @@ const IncomeOrExpense = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'UserModel',
   },
-  type: String,
+  type: Boolean,
   amount: Number,
   description: String,
   category: String,

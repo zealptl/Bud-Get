@@ -1,16 +1,40 @@
-const { validationResult } = require('express-validator');
+const Joi = require('@hapi/joi');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const UserModel = require('../../models/user');
 
+const validationSchema = Joi.object({
+  firstName: Joi.string().required(),
+  lastName: Joi.string().required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6),
+});
+
+const validateData = async (req, res) => {
+  try {
+    const { firstName, lastName, email, password } = req.body;
+
+    const values = await validationSchema.validateAsync({
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+
+    return values;
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({
+      msg:
+        '"firstName", "lastName", "email", and "password" are only allowed and required fields.',
+    });
+  }
+};
+
 const createUserMiddleware = async (req, res) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty())
-    return res.status(400).json({ errors: errors.array() });
-
-  const { firstName, lastName, email, password } = req.body;
+  const values = await validateData(req, res);
+  const { firstName, lastName, email, password } = values;
 
   try {
     let user = await UserModel.findOne({ email });

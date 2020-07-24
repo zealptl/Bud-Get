@@ -8,12 +8,5 @@ const authUserMiddleware = require('./middlewares/authUser');
 const router = express.Router();
 
 router.get('/', authCallbackMiddleware, getLoggedInUserMiddleware);
-router.post(
-  '/',
-  [
-    check('email', 'Please include a valid Email').isEmail(),
-    check('password', 'Password is required').exists(),
-  ],
-  authUserMiddleware
-);
+router.post('/', authUserMiddleware);
 module.exports = router;

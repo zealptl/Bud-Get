@@ -1,6 +1,5 @@
 const Joi = require('@hapi/joi');
 const IncomeOrExpenseModel = require('../../models/incomeOrExpense');
-const { valid } = require('@hapi/joi');
 
 const MIN = 0;
 const MAX_DECIMALS = 2;

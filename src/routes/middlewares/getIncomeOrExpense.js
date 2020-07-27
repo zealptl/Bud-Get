@@ -3,18 +3,20 @@ const IncomeOrExpenseModel = require('../../models/incomeOrExpense');
 
 const validationSchema = Joi.object({
   type: Joi.string().valid('income', 'expense').required(),
-  time: Joi.string().valid('month', 'year').required(),
+  start: Joi.string().required(),
+  end: Joi.string().required(),
   offset: Joi.number().required(),
   limit: Joi.number().required(),
 });
 
 const validateData = async (req, res) => {
   try {
-    const { type, time, offset, limit } = req.query;
+    const { type, start, end, offset, limit } = req.query;
 
     const values = await validationSchema.validateAsync({
       type,
-      time,
+      start,
+      end,
       offset,
       limit,
     });
@@ -24,29 +26,21 @@ const validateData = async (req, res) => {
     console.error(error);
     res.status(400).json({
       msg:
-        '"type", "time", "offset", and "limit" are the only allowed parameters.',
+        '"type", "start", "end", "offset", and "limit" are the only allowed parameters.',
     });
   }
 };
 
 const getIncomeOrExpenseMiddleware = async (req, res) => {
-  const { type, time, offset, limit } = await validateData(req, res);
+  const { type, start, end, offset, limit } = await validateData(req, res);
 
   try {
-    const date = new Date();
-    let eq;
-
-    if (time === 'month') {
-      eq = [{ $month: '$updatedOn' }, date.getMonth() + 1];
-    } else if (time === 'year') {
-      eq = [{ $year: '$updatedOn' }, date.getFullYear()];
-    }
-
     const incomesOrExpenses = await IncomeOrExpenseModel.find(
       {
         type,
-        $expr: {
-          $eq: eq,
+        updatedOn: {
+          $gte: start,
+          $lt: end,
         },
       },
       {

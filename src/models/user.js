@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
 
 const UserSchema = mongoose.Schema({
   firstName: String,

@@ -34,7 +34,7 @@ const authUserMiddleware = async (req, res) => {
   try {
     const user = await UserModel.findOne({ email });
 
-    if (!user) return res.status(400).json({ msg: 'Invalid Credentials' });
+    if (!user) return res.status(404).json({ msg: 'Acount not found' });
 
     const isMatch = await bcrypt.compare(password, user.password);
 

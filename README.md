@@ -14,7 +14,7 @@ You will need to create a `defualt.json` file in `config` folder and insert
 
 ```json
   {
-    "mongoURI": <your mongoDB uri>,
+    "mongoURI": "your mongoDB uri",
     "jwtSecret": "secret"
   }
 ```

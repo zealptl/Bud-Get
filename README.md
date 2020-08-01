@@ -14,7 +14,7 @@ You will need to create a `defualt.json` file in `config` folder and insert
 
 ```json
   {
-    "mongoURI": <your mongoDB uri>,
+    "mongoURI": "your mongoDB uri",
     "jwtSecret": "secret"
   }
 ```
@@ -33,7 +33,7 @@ Install frontend dependencies
   npm run clientinstall
 ```
 
-## Run frontend & backend at the time
+### Running frontend & backend at the same time
 
 ```
   npm run dev

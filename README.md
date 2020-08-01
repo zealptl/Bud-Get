@@ -33,7 +33,7 @@ Install frontend dependencies
   npm run clientinstall
 ```
 
-## Run frontend & backend at the time
+### Running frontend & backend at the same time
 
 ```
   npm run dev

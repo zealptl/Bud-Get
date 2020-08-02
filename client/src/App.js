@@ -1,14 +1,14 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import darkTheme from './theme/darkTheme';
-import lightTheme from './theme/lightTheme';
+import theme from './theme';
+import Item from './components/Item';
 
 const App = () => {
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline>
-        <h1>Hello World</h1>
+        <Item />
       </CssBaseline>
     </ThemeProvider>
   );

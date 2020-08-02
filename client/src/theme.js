@@ -28,7 +28,7 @@ const theme = createMuiTheme({
       backgroundColor: '#333',
     },
     inner: {
-      margin: '10px',
+      margin: '5px',
       borderRadius: '5px',
       padding: '10px',
       backgroundColor: '#444',

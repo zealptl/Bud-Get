@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const UserModel = require('../../models/user');
-const { valid } = require('@hapi/joi');
 
 const validationSchema = Joi.object({
   email: Joi.string().email().required(),
@@ -12,12 +11,7 @@ const validationSchema = Joi.object({
 
 const validateData = async (req, res) => {
   try {
-    const { email, password } = req.body;
-
-    const values = await validationSchema.validateAsync({
-      email,
-      password,
-    });
+    const values = await validationSchema.validateAsync(req.body);
 
     return values;
   } catch (error) {
@@ -29,8 +23,7 @@ const validateData = async (req, res) => {
 };
 
 const authUserMiddleware = async (req, res) => {
-  const values = await validateData(req, res);
-  const { email, password } = values;
+  const { email, password } = await validateData(req, res);
   try {
     const user = await UserModel.findOne({ email });
 

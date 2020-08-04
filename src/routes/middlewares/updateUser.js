@@ -15,23 +15,7 @@ const validationSchema = Joi.object({
 
 const validateData = async (req, res) => {
   try {
-    const {
-      firstName,
-      lastName,
-      oldEmail,
-      newEmail,
-      oldPassword,
-      newPassword,
-    } = req.body;
-
-    const values = await validationSchema.validateAsync({
-      firstName,
-      lastName,
-      oldEmail,
-      newEmail,
-      oldPassword,
-      newPassword,
-    });
+    const values = await validationSchema.validateAsync(req.body);
 
     return values;
   } catch (error) {

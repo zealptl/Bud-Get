@@ -11,15 +11,7 @@ const validationSchema = Joi.object({
 
 const validateData = async (req, res) => {
   try {
-    const { type, start, end, offset, limit } = req.query;
-
-    const values = await validationSchema.validateAsync({
-      type,
-      start,
-      end,
-      offset,
-      limit,
-    });
+    const values = await validationSchema.validateAsync(req.query);
 
     return values;
   } catch (error) {

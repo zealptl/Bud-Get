@@ -12,12 +12,7 @@ const validationSchema = Joi.object({
 
 const validateData = async (req, res) => {
   try {
-    const { amount, description, category } = req.body;
-    const values = await validationSchema.validateAsync({
-      amount,
-      description,
-      category,
-    });
+    const values = await validationSchema.validateAsync(req.body);
 
     return values;
   } catch (error) {

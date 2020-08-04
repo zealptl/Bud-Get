@@ -13,14 +13,7 @@ const validationSchema = Joi.object({
 
 const validateData = async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
-
-    const values = await validationSchema.validateAsync({
-      firstName,
-      lastName,
-      email,
-      password,
-    });
+    const values = await validationSchema.validateAsync(req.body);
 
     return values;
   } catch (error) {
@@ -33,8 +26,7 @@ const validateData = async (req, res) => {
 };
 
 const createUserMiddleware = async (req, res) => {
-  const values = await validateData(req, res);
-  const { firstName, lastName, email, password } = values;
+  const { firstName, lastName, email, password } = await validateData(req, res);
 
   try {
     let user = await UserModel.findOne({ email });

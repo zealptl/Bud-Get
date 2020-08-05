@@ -13,3 +13,5 @@ config/default.json
 npm-degub.log*
 yarn-debug.log*
 yarn-error.log*
+
+/.vscode

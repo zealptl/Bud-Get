@@ -41,7 +41,7 @@ const createIncomeOrExpenseMiddleware = async (req, res) => {
     res.json({ incomeOrExpense });
   } catch (error) {
     console.error(error);
-    res.status(400).send('Server Error');
+    res.status(500).send('Server Error');
   }
 };
 

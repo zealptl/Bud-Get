@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Avatar,
   Button,
   CssBaseline,
   TextField,
-  Link,
+  Link as MaterialLink,
   Grid,
   Typography,
   makeStyles,
@@ -170,8 +171,10 @@ const SignUp = (props) => {
           </Button>
           <Grid container justify='flex-end'>
             <Grid item>
-              <Link href='/signin' variant='body2'>
-                Already have an account? Sign in
+              <Link to='/signin'>
+                <MaterialLink variant='body2'>
+                  {'Already have an account? Sign In'}
+                </MaterialLink>
               </Link>
             </Grid>
           </Grid>

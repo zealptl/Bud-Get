@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   Avatar,
   Button,
   CssBaseline,
   TextField,
-  Link,
+  Link as MaterialLink,
   Grid,
   Typography,
   makeStyles,
   Container,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { LockOutlined } from '@material-ui/icons';
+import AuthContext from '../../context/auth/AuthContext';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,6 +37,41 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn = (props) => {
   const classes = useStyles();
+
+  const authContext = useContext(AuthContext);
+  const { signInUser, error, clearErrors, isAuthenticated } = authContext;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
+
+    if (error === 'Invalid Credentials') {
+      console.error(error);
+    }
+  }, [error, isAuthenticated, props.history]);
+
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { email, password } = user;
+
+  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (email === '' || password === '') {
+      console.log('Please fill in all the fields');
+    } else {
+      signInUser({
+        email,
+        password,
+      });
+    }
+  };
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
@@ -45,7 +82,7 @@ const SignIn = (props) => {
         <Typography component='h1' variant='h5'>
           Sign in
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={onSubmit}>
           <TextField
             name='email'
             variant='outlined'
@@ -53,8 +90,8 @@ const SignIn = (props) => {
             label='Email Address'
             autoComplete='email'
             margin='normal'
-            // onChange={onChange}
-            // value={email}
+            onChange={onChange}
+            value={email}
             required
             fullWidth
           />
@@ -65,8 +102,8 @@ const SignIn = (props) => {
             label='Password'
             type='password'
             margin='normal'
-            // onChange={onChange}
-            // value={password}
+            onChange={onChange}
+            value={password}
             required
             fullWidth
           />
@@ -82,8 +119,10 @@ const SignIn = (props) => {
           <Grid container>
             <Grid item xs></Grid>
             <Grid item>
-              <Link href='/signup' variant='body2'>
-                {"Don't have an account? Sign Up"}
+              <Link to='/signup'>
+                <MaterialLink variant='body2'>
+                  {"Don't have an account? Sign Up"}
+                </MaterialLink>
               </Link>
             </Grid>
           </Grid>

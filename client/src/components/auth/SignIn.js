@@ -1,16 +1,17 @@
-import React, { useState, useContext, useEffect } from 'react';
-import AuthContext from '../../context/auth/AuthContext';
+import React from 'react';
 import {
   Avatar,
   Button,
-  Container,
+  CssBaseline,
   TextField,
   Link,
+  Grid,
   Typography,
   makeStyles,
-  CssBaseline,
+  Container,
 } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { LockOutlined } from '@material-ui/icons';
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(10),
@@ -20,10 +21,11 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
+    borderRadius: '10px',
     backgroundColor: theme.palette.primary.main,
   },
   form: {
-    width: '100%',
+    width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -32,94 +34,61 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = (props) => {
-  const authContext = useContext(AuthContext);
-  const { signInUser, isAuthenticated, error } = authContext;
   const classes = useStyles();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      props.history.push('/');
-    }
-
-    if (error === 'Invalid Credentials') {
-      console.log(error);
-    }
-
-    // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
-
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-  });
-
-  const { email, password } = user;
-
-  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    if (email === '' || password === '') {
-      console.log('Please fill  in all fields', 'danger');
-    } else {
-      signInUser({
-        email,
-        password,
-      });
-    }
-  };
-
   return (
     <Container component='main' maxWidth='xs'>
-      <CssBaseline>
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component='h1' variant='h5'>
-            Sign in
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              autoComplete='email'
-              autoFocus
-              onChange={onChange}
-            />
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              name='password'
-              label='Password'
-              type='password'
-              id='password'
-              autoComplete='current-password'
-              onChange={onChange}
-            />
-            <Button
-              type='submit'
-              fullWidth
-              variant='contained'
-              color='primary'
-              className={classes.submit}
-            >
-              Sign In
-            </Button>
-            <Link href='#' variant='body2'>
-              Don't have an account? Sign Up
-            </Link>
-          </form>
-        </div>
-      </CssBaseline>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlined />
+        </Avatar>
+        <Typography component='h1' variant='h5'>
+          Sign in
+        </Typography>
+        <form className={classes.form}>
+          <TextField
+            name='email'
+            variant='outlined'
+            id='email'
+            label='Email Address'
+            autoComplete='email'
+            margin='normal'
+            // onChange={onChange}
+            // value={email}
+            required
+            fullWidth
+          />
+          <TextField
+            name='password'
+            variant='outlined'
+            id='password'
+            label='Password'
+            type='password'
+            margin='normal'
+            // onChange={onChange}
+            // value={password}
+            required
+            fullWidth
+          />
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            color='primary'
+            className={classes.submit}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item xs></Grid>
+            <Grid item>
+              <Link href='/signup' variant='body2'>
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
     </Container>
   );
 };

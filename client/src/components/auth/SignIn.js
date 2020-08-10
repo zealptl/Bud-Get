@@ -94,6 +94,7 @@ const SignIn = (props) => {
             value={email}
             required
             fullWidth
+            autoFocus
           />
           <TextField
             name='password'

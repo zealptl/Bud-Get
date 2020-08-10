@@ -117,7 +117,6 @@ const SignUp = (props) => {
                 value={lastName}
                 required
                 fullWidth
-                autoFocus
               />
             </Grid>
             <Grid item xs={12}>

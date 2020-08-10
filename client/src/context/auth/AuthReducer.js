@@ -1,12 +1,12 @@
 import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
-  USER_LOADED,
-  AUTH_ERROR,
   SIGNIN_SUCCESS,
   SIGNIN_FAIL,
-  LOGOUT,
-  CLEAR_ERRORS,
+  USER_LOADED,
+  AUTH_ERROR,
+  SIGNOUT,
+  CLEAR_ERROR,
 } from '../types';
 
 export default (state, action) => {
@@ -32,6 +32,7 @@ export default (state, action) => {
     case SIGNUP_FAIL:
     case SIGNIN_FAIL:
     case AUTH_ERROR:
+    case SIGNOUT:
       localStorage.removeItem('token');
       return {
         ...state,
@@ -40,6 +41,12 @@ export default (state, action) => {
         loading: false,
         user: null,
         error: action.payload,
+      };
+
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
       };
 
     default:

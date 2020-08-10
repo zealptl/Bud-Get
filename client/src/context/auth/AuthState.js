@@ -6,16 +6,16 @@ import setAuthToken from '../../utils/setAuthToken';
 import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
-  USER_LOADED,
-  AUTH_ERROR,
   SIGNIN_SUCCESS,
   SIGNIN_FAIL,
-  LOGOUT,
-  CLEAR_ERRORS,
+  USER_LOADED,
+  AUTH_ERROR,
+  SIGNOUT,
+  CLEAR_ERROR,
 } from '../types';
 
 const AuthState = (props) => {
-  const intialState = {
+  const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     loading: true,
@@ -23,7 +23,7 @@ const AuthState = (props) => {
     error: null,
   };
 
-  const [state, dispatch] = useReducer(AuthReducer, intialState);
+  const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const loadUser = async () => {
     if (localStorage.token) {
@@ -33,16 +33,14 @@ const AuthState = (props) => {
     try {
       const res = await axios.get('/api/auth');
       dispatch({ type: USER_LOADED, payload: res.data });
-    } catch (err) {
+    } catch (error) {
       dispatch({ type: AUTH_ERROR });
     }
   };
 
   const signUpUser = async (formData) => {
     const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     };
 
     try {
@@ -50,53 +48,42 @@ const AuthState = (props) => {
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
 
       loadUser();
-    } catch (err) {
-      dispatch({
-        type: SIGNUP_FAIL,
-        payload: err.response.data.msg,
-      });
+    } catch (error) {
+      dispatch({ type: SIGNUP_FAIL, payload: error.response.data.msg });
     }
   };
 
   const signInUser = async (formData) => {
     const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     };
 
     try {
-      const res = await axios.post(
-        'http://localhost:5000/api/auth',
-        formData,
-        config
-      );
-      dispatch({
-        type: SIGNIN_SUCCESS,
-        payload: res.data,
-      });
-
+      const res = await axios.post('/api/auth', formData, config);
+      dispatch({ type: SIGNIN_SUCCESS, payload: res.data });
       loadUser();
-    } catch (err) {
-      console.log(err);
-      dispatch({
-        type: SIGNIN_FAIL,
-        payload: err,
-      });
+    } catch (error) {
+      dispatch({ type: SIGNIN_FAIL, payload: error.response.data.msg });
     }
   };
+
+  const signOutUser = () => dispatch({ type: SIGNOUT });
+
+  const clearErrors = () => dispatch({ type: CLEAR_ERROR });
 
   return (
     <AuthContext.Provider
       value={{
         token: state.token,
-        isAuthenticated: state.isAuthenticated,
+        isAuthenticated: state.token,
         loading: state.loading,
         user: state.user,
         error: state.error,
         loadUser,
-        signInUser,
         signUpUser,
+        signInUser,
+        signOutUser,
+        clearErrors,
       }}
     >
       {props.children}

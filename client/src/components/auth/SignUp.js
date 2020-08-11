@@ -14,6 +14,7 @@ import {
 import { LockOutlined } from '@material-ui/icons';
 
 import AuthContext from '../../context/auth/AuthContext';
+import AlertContext from '../../context/alert/AlertContext';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,7 +41,10 @@ const SignUp = (props) => {
   const classes = useStyles();
 
   const authContext = useContext(AuthContext);
-  const { signUpUser, error, clearError, isAuthenticated } = authContext;
+  const { signUpUser, error, clearErrors, isAuthenticated } = authContext;
+
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
 
   const [user, setUser] = useState({
     firstName: '',
@@ -57,9 +61,12 @@ const SignUp = (props) => {
       props.history.push('/');
     }
 
-    if (error === 'User already exists') {
-      console.error(error);
+    if (error) {
+      setAlert(error, 'error');
+      clearErrors();
     }
+
+    // eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
@@ -73,9 +80,9 @@ const SignUp = (props) => {
       email === '' ||
       password === ''
     ) {
-      console.log('Plese enter all fields');
+      setAlert('Plese enter all fields', 'error');
     } else if (password !== password2) {
-      console.log('Passwords do nott match');
+      setAlert('Passwords do nott match', 'error');
     } else {
       signUpUser({ firstName, lastName, email, password });
     }

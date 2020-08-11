@@ -13,6 +13,7 @@ import {
 import { Link } from 'react-router-dom';
 import { LockOutlined } from '@material-ui/icons';
 import AuthContext from '../../context/auth/AuthContext';
+import AlertContext from '../../context/alert/AlertContext';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,14 +42,20 @@ const SignIn = (props) => {
   const authContext = useContext(AuthContext);
   const { signInUser, error, clearErrors, isAuthenticated } = authContext;
 
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
+
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push('/');
     }
 
-    if (error === 'Invalid Credentials') {
-      console.error(error);
+    if (error) {
+      setAlert(error, 'error');
+      clearErrors();
     }
+
+    // eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
 
   const [user, setUser] = useState({
@@ -64,7 +71,7 @@ const SignIn = (props) => {
     e.preventDefault();
 
     if (email === '' || password === '') {
-      console.log('Please fill in all the fields');
+      setAlert('Please fill in all the fields', 'error');
     } else {
       signInUser({
         email,

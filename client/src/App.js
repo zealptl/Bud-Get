@@ -7,6 +7,7 @@ import theme from './theme';
 import Alerts from './components/layout/Alerts';
 import SignUp from './components/auth/SignUp';
 import SignIn from './components/auth/SignIn';
+import Dashboard from './components/pages/Dashboard';
 
 import setAuthToken from './utils/setAuthToken';
 import AuthState from './context/auth/AuthState';
@@ -27,6 +28,7 @@ const App = () => {
                 <div className='container'>
                   <Alerts />
                   <Switch>
+                    <Route exact path='/' component={Dashboard} />
                     <Route exact path='/signup' component={SignUp} />
                     <Route exact path='/signin' component={SignIn} />
                   </Switch>

@@ -18,16 +18,18 @@ import {
   FavoriteRounded as FavoriteRoundedIcon,
   ChevronRightRounded as ChevronRightRoundedIcon,
 } from '@material-ui/icons';
-
-const DRAWER_WIDTH = 240;
+import { DRAWER_WIDTH } from '../../utils/constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: DRAWER_WIDTH,
   },
+  drawerPaper: {
+    width: DRAWER_WIDTH,
+  },
   divider: {
-    marginTop: '50px',
+    marginTop: '55px',
   },
 }));
 
@@ -35,7 +37,14 @@ const PageDrawer = () => {
   const classes = useStyles();
 
   return (
-    <Drawer variant='permanent' anchor='left' className={classes.root}>
+    <Drawer
+      variant='permanent'
+      anchor='left'
+      className={classes.root}
+      classes={{
+        paper: classes.drawerPaper,
+      }}
+    >
       <List>
         <Divider className={classes.divider} />
 

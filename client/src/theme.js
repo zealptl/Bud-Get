@@ -10,7 +10,7 @@ const theme = createMuiTheme({
       main: '#6B9080',
     },
     component: {
-      light: '#444',
+      light: '#424242',
       dark: '#333',
     },
     income: { main: '#55A1E5' },
@@ -23,8 +23,8 @@ const theme = createMuiTheme({
   component: {
     outer: {
       margin: '10px',
-      borderRadius: '20px',
-      padding: '10px',
+      borderRadius: '10px',
+      padding: '8px',
       backgroundColor: '#333',
     },
     inner: {
@@ -32,7 +32,7 @@ const theme = createMuiTheme({
       'margin-right': '5px',
       borderRadius: '5px',
       padding: '10px',
-      backgroundColor: '#444',
+      backgroundColor: '#424242',
     },
   },
 });

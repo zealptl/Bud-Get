@@ -1,18 +1,11 @@
 import React from 'react';
-import {
-  makeStyles,
-  Container,
-  Grid,
-  Paper,
-  CssBaseline,
-  useTheme,
-} from '@material-ui/core';
+import { makeStyles, Grid, CssBaseline, useTheme } from '@material-ui/core';
+import { DRAWER_WIDTH } from '../../../utils/constants';
 import PageDrawer from '../../layout/PageDrawer';
 import Navbar from '../../layout/Navbar';
 import Chart from './Chart';
-import { DRAWER_WIDTH } from '../../../utils/constants';
-import theme from '../../../theme';
 import TransactionSummary from './TransactionSummary';
+import PreviewTable from './PreviewTable';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,11 +20,6 @@ const useStyles = makeStyles((theme) => ({
   },
   component: {
     ...theme.component.inner,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
   },
 }));
 
@@ -59,12 +47,16 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} md={6}>
             <div className={classes.componentContainer}>
-              <div className={classes.component}></div>
+              <div className={classes.component}>
+                <PreviewTable type='income' />
+              </div>
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
             <div className={classes.componentContainer}>
-              <div className={classes.component}></div>
+              <div className={classes.component}>
+                <PreviewTable type='expense' />
+              </div>
             </div>
           </Grid>
         </Grid>

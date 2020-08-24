@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Drawer,
   makeStyles,
@@ -48,37 +49,42 @@ const PageDrawer = () => {
       <List>
         <Divider className={classes.divider} />
 
-        <ListItem button key='Dashboard'>
+        <ListItem button key='Dashboard' to='/' component={Link}>
           <ListItemIcon>
             <DashboardRoundedIcon />
           </ListItemIcon>
           <ListItemText primary='Dashboard' />
         </ListItem>
-        <ListItem button key='Quick Add'>
+
+        <ListItem button key='Quick Add' to='/quickadd' component={Link}>
           <ListItemIcon>
             <AddBoxRoundedIcon />
           </ListItemIcon>
           <ListItemText primary='Quick Add' />
         </ListItem>
-        <ListItem button key='Income'>
+
+        <ListItem button key='Income' to='/income' component={Link}>
           <ListItemIcon>
             <MonetizationOnRoundedIcon />
           </ListItemIcon>
           <ListItemText primary='Income' />
         </ListItem>
-        <ListItem button key='Expense'>
+
+        <ListItem button key='Expense' to='/expense' component={Link}>
           <ListItemIcon>
             <CreditCardRoundedIcon />
           </ListItemIcon>
           <ListItemText primary='Expense' />
         </ListItem>
-        <ListItem button key='Trends'>
+
+        <ListItem button key='Trends' to='/trends' component={Link}>
           <ListItemIcon>
             <ShowChartRoundedIcon />
           </ListItemIcon>
           <ListItemText primary='Trends' />
         </ListItem>
-        <ListItem button key='Wishlist'>
+
+        <ListItem button key='Wishlist' to='/wishlist' component={Link}>
           <ListItemIcon>
             <FavoriteRoundedIcon />
           </ListItemIcon>

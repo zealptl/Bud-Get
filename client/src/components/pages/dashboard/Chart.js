@@ -55,59 +55,57 @@ const Chart = () => {
   return (
     <Fragment>
       <Title>This Month</Title>
+      <ResponsiveContainer width='100%' height={270}>
+        <AreaChart
+          data={data}
+          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id='colorsavings' x1='0' y1='0' x2='0' y2='1'>
+              <stop
+                offset='5%'
+                stopColor={theme.palette.savings.main}
+                stopOpacity={0.8}
+              />
+              <stop
+                offset='95%'
+                stopColor={theme.palette.savings.main}
+                stopOpacity={0}
+              />
+            </linearGradient>
+            <linearGradient id='expense' x1='0' y1='0' x2='0' y2='1'>
+              <stop
+                offset='5%'
+                stopColor={theme.palette.expense.main}
+                stopOpacity={0.8}
+              />
+              <stop
+                offset='95%'
+                stopColor={theme.palette.expense.main}
+                stopOpacity={0}
+              />
+            </linearGradient>
+          </defs>
+          <XAxis dataKey='name' />
+          <YAxis />
 
-      <AreaChart
-        width={850}
-        height={270}
-        data={data}
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-      >
-        <defs>
-          <linearGradient id='colorsavings' x1='0' y1='0' x2='0' y2='1'>
-            <stop
-              offset='5%'
-              stopColor={theme.palette.savings.main}
-              stopOpacity={0.8}
-            />
-            <stop
-              offset='95%'
-              stopColor={theme.palette.savings.main}
-              stopOpacity={0}
-            />
-          </linearGradient>
-          <linearGradient id='expense' x1='0' y1='0' x2='0' y2='1'>
-            <stop
-              offset='5%'
-              stopColor={theme.palette.expense.main}
-              stopOpacity={0.8}
-            />
-            <stop
-              offset='95%'
-              stopColor={theme.palette.expense.main}
-              stopOpacity={0}
-            />
-          </linearGradient>
-        </defs>
-        <XAxis dataKey='name' />
-        <YAxis />
-
-        <Tooltip />
-        <Area
-          type='monotone'
-          dataKey='savings'
-          stroke={theme.palette.savings.main}
-          fillOpacity={1}
-          fill='url(#colorsavings)'
-        />
-        <Area
-          type='monotone'
-          dataKey='expense'
-          stroke={theme.palette.expense.main}
-          fillOpacity={1}
-          fill='url(#expense)'
-        />
-        <CartesianGrid strokeDasharray='3 3' />
-      </AreaChart>
+          <Tooltip />
+          <Area
+            type='monotone'
+            dataKey='savings'
+            stroke={theme.palette.savings.main}
+            fillOpacity={1}
+            fill='url(#colorsavings)'
+          />
+          <Area
+            type='monotone'
+            dataKey='expense'
+            stroke={theme.palette.expense.main}
+            fillOpacity={1}
+            fill='url(#expense)'
+          />
+        </AreaChart>
+      </ResponsiveContainer>
     </Fragment>
   );
 };

@@ -17,38 +17,38 @@ const Chart = () => {
   const data = [
     {
       name: '08/01',
-      income: 5000,
-      expense: 500,
+      savings: 10000,
+      expense: 0,
     },
     {
       name: '08/05',
-      income: 0,
-      expense: 1398,
+      savings: 8000,
+      expense: 2000,
     },
     {
       name: '08/10',
-      income: 0,
+      savings: 7500,
       expense: 500,
     },
     {
       name: '08/15',
-      income: 5000,
-      expense: 800,
+      savings: 5000,
+      expense: 2500,
     },
     {
       name: '08/20',
-      income: 0,
-      expense: 3500,
+      savings: 5000,
+      expense: 0,
     },
     {
       name: '08/25',
-      income: 0,
-      expense: 600,
+      savings: 5000,
+      expense: 0,
     },
     {
       name: '08/30',
-      income: 0,
-      expense: 800,
+      savings: 3000,
+      expense: 500,
     },
   ];
 
@@ -57,21 +57,21 @@ const Chart = () => {
       <Title>This Month</Title>
 
       <AreaChart
-        width={800}
-        height={250}
+        width={850}
+        height={270}
         data={data}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
       >
         <defs>
-          <linearGradient id='colorincome' x1='0' y1='0' x2='0' y2='1'>
+          <linearGradient id='colorsavings' x1='0' y1='0' x2='0' y2='1'>
             <stop
               offset='5%'
-              stopColor={theme.palette.income.main}
+              stopColor={theme.palette.savings.main}
               stopOpacity={0.8}
             />
             <stop
               offset='95%'
-              stopColor={theme.palette.income.main}
+              stopColor={theme.palette.savings.main}
               stopOpacity={0}
             />
           </linearGradient>
@@ -94,10 +94,10 @@ const Chart = () => {
         <Tooltip />
         <Area
           type='monotone'
-          dataKey='income'
-          stroke={theme.palette.income.main}
+          dataKey='savings'
+          stroke={theme.palette.savings.main}
           fillOpacity={1}
-          fill='url(#colorincome)'
+          fill='url(#colorsavings)'
         />
         <Area
           type='monotone'
@@ -106,6 +106,7 @@ const Chart = () => {
           fillOpacity={1}
           fill='url(#expense)'
         />
+        <CartesianGrid strokeDasharray='3 3' />
       </AreaChart>
     </Fragment>
   );

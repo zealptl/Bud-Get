@@ -23,7 +23,7 @@ const TransactionSummary = () => {
           variant='h4'
           gutterBottom
         >
-          $ 100,000
+          $ 10,000
         </Typography>
       </div>
       <div className={classes.component}>
@@ -36,7 +36,7 @@ const TransactionSummary = () => {
           variant='h4'
           gutterBottom
         >
-          $ 60,000
+          $ 7,000
         </Typography>
       </div>
       <div className={classes.component}>
@@ -49,7 +49,7 @@ const TransactionSummary = () => {
           variant='h4'
           gutterBottom
         >
-          $ 40,000
+          $ 3,000
         </Typography>
       </div>
     </Fragment>

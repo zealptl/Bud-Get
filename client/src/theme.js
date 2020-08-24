@@ -22,16 +22,13 @@ const theme = createMuiTheme({
   },
   component: {
     outer: {
-      margin: '10px',
       borderRadius: '10px',
-      padding: '8px',
       backgroundColor: '#333',
     },
     inner: {
-      margin: '5px',
-      'margin-right': '5px',
-      borderRadius: '5px',
+      margin: '10px',
       padding: '10px',
+      borderRadius: '5px',
       backgroundColor: '#424242',
     },
   },

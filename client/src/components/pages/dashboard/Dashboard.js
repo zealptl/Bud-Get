@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
   },
   componentContainer: {
     ...theme.component.outer,
-    margin: theme.spacing(1),
-    padding: theme.spacing(0.5),
+    margin: theme.spacing(2, 0, 0, 2),
+    padding: theme.spacing(1),
   },
   component: {
     ...theme.component.inner,
@@ -29,34 +29,40 @@ const Dashboard = () => {
   return (
     <div>
       <CssBaseline />
-      <Navbar name='Dashboard' />
+      <Navbar heading='Dashboard' />
       <PageDrawer />
       <div className={classes.root}>
         <Grid container spacing={0}>
           <Grid item xs={12} md={9}>
             <div className={classes.componentContainer}>
-              <div className={classes.component}>
-                <Chart />
-              </div>
+              <Chart />
             </div>
           </Grid>
           <Grid item xs={12} md={3}>
-            <div className={classes.componentContainer}>
+            <div
+              className={classes.componentContainer}
+              style={{ marginRight: theme.spacing(2) }}
+            >
               <TransactionSummary />
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
-            <div className={classes.componentContainer}>
-              <div className={classes.component}>
-                <PreviewTable type='income' />
-              </div>
+            <div
+              className={classes.componentContainer}
+              style={{ marginBottom: theme.spacing(2) }}
+            >
+              <PreviewTable type='income' />
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
-            <div className={classes.componentContainer}>
-              <div className={classes.component}>
-                <PreviewTable type='expense' />
-              </div>
+            <div
+              className={classes.componentContainer}
+              style={{
+                marginRight: theme.spacing(2),
+                marginBottom: theme.spacing(2),
+              }}
+            >
+              <PreviewTable type='expense' />
             </div>
           </Grid>
         </Grid>

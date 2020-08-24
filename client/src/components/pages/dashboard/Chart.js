@@ -55,7 +55,7 @@ const Chart = () => {
   return (
     <Fragment>
       <Title>This Month</Title>
-      <ResponsiveContainer width='100%' height={270}>
+      <ResponsiveContainer width='100%' height={310}>
         <AreaChart
           data={data}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}

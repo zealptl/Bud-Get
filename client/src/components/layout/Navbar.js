@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = ({ name }) => {
+const Navbar = ({ heading }) => {
   const classes = useStyles();
 
   const authContext = useContext(AuthContext);
@@ -46,7 +46,7 @@ const Navbar = ({ name }) => {
       <AppBar position='static'>
         <Toolbar>
           <Typography variant='h4' className={classes.title}>
-            {name}
+            {heading}
           </Typography>
           <Typography variant='h6' className={classes.userGreeting}>
             Hello {user && user.firstName}

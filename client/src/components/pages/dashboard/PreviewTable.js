@@ -8,6 +8,7 @@ import {
   TableRow,
   makeStyles,
   Link,
+  useTheme,
 } from '@material-ui/core';
 import Title from '../../layout/Title';
 
@@ -31,6 +32,7 @@ const rows = [
 
 const PreviewTable = ({ type }) => {
   const classes = useStyles();
+  const theme = useTheme();
   return (
     <TableContainer>
       <Title>{`${type[0].toUpperCase()}${type.slice(1)}`}</Title>
@@ -69,7 +71,7 @@ const PreviewTable = ({ type }) => {
           ))}
         </TableBody>
       </Table>
-      <Link href='#' style={{ float: 'right' }}>
+      <Link href='#' style={{ float: 'right', marginTop: theme.spacing(1.5) }}>
         More
       </Link>
     </TableContainer>

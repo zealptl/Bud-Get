@@ -41,7 +41,7 @@ const QuickAdd = () => {
           </Grid>
           <Grid item xs={12} md={9}>
             <div className={classes.componentContainer}>
-              <Chart />
+              <Chart isAnimationActive={false} />
             </div>
           </Grid>
           <Grid item xs={12} md={3}>

@@ -11,7 +11,7 @@ import {
   CartesianGrid,
 } from 'recharts';
 
-const Chart = () => {
+const Chart = ({ isAnimationActive }) => {
   const theme = useTheme();
 
   const data = [
@@ -96,6 +96,7 @@ const Chart = () => {
             stroke={theme.palette.savings.main}
             fillOpacity={1}
             fill='url(#colorsavings)'
+            isAnimationActive={isAnimationActive}
           />
           <Area
             type='monotone'
@@ -103,6 +104,7 @@ const Chart = () => {
             stroke={theme.palette.expense.main}
             fillOpacity={1}
             fill='url(#expense)'
+            isAnimationActive={isAnimationActive}
           />
         </AreaChart>
       </ResponsiveContainer>

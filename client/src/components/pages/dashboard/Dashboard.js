@@ -32,7 +32,7 @@ const Dashboard = () => {
         <Grid container spacing={0}>
           <Grid item xs={12} md={9}>
             <div className={classes.componentContainer}>
-              <Chart />
+              <Chart isAnimationActive={true} />
             </div>
           </Grid>
           <Grid item xs={12} md={3}>

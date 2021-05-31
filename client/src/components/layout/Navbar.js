@@ -83,7 +83,11 @@ const Navbar = ({ heading }) => {
 						Hello {user && user.firstName}
 					</Typography>
 
-					<Button color='inherit' startIcon={<ExitToAppRoundedIcon />}>
+					<Button
+						color='inherit'
+						onClick={signOutUser}
+						startIcon={<ExitToAppRoundedIcon />}
+					>
 						SignOut
 					</Button>
 				</Toolbar>

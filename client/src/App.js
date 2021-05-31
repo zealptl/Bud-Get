@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import ThemeProvider from './ThemeProvider';
+import PrivateRoute from './routing/PrivateRoute';
 import Alerts from './components/layout/Alerts';
 import SignUp from './components/auth/SignUp';
 import SignIn from './components/auth/SignIn';
@@ -35,7 +36,7 @@ const App = () => {
 									<div className='container'>
 										<Alerts />
 										<Switch>
-											<Route exact path='/' component={Dashboard} />
+											<PrivateRoute exact path='/' component={Dashboard} />
 											<Route exact path='/quickadd' component={QuickAdd} />
 											<Route exact path='/income' component={Income} />
 											<Route exact path='/expense' component={Expense} />

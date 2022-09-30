@@ -27,7 +27,7 @@
     "express-validator": "^6.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.19",
-    "recharts": "^1.8.5"
+    "recharts": "^2.1.14"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
